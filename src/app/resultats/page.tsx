@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router';
+"use client"; // Ajoute cette ligne pour indiquer que ce composant est un Client Component
+
+import { useSearchParams } from 'next/navigation';
 
 const plantesParMois = {
   janvier: ['Carotte', 'Navet', 'Chou'],
@@ -16,8 +18,8 @@ const plantesParMois = {
 };
 
 export default function Resultats() {
-  const router = useRouter();
-  const { mois } = router.query;
+  const searchParams = useSearchParams();
+  const mois = searchParams.get('mois');
 
   if (!mois || typeof mois !== 'string') {
     return <div>Aucun mois sélectionné.</div>;
@@ -33,7 +35,8 @@ export default function Resultats() {
           <li key={plante} className="list-disc">{plante}</li>
         ))}
       </ul>
-      <button onClick={() => router.push('/')} className="bg-blue-500 text-white p-2 rounded mt-4">Revenir à la sélection</button>
+      <button onClick={() => window.location.href = '/'} 
+      className="bg-blue-500 text-white p-2 rounded mt-4">Revenir à la sélection</button>
     </div>
   );
 }
