@@ -25,7 +25,7 @@ export default function Resultats() {
     return <div>Aucun mois sélectionné.</div>;
   }
 
-  const plantes = plantesParMois[mois as keyof typeof plantesParMois] || [];
+  const plantes = plantesParMois[mois.toLowerCase() as keyof typeof plantesParMois] || [];
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -36,7 +36,8 @@ export default function Resultats() {
         ))}
       </ul>
       <button onClick={() => window.location.href = '/'} 
-      className="bg-blue-500 text-white p-2 rounded mt-4">Revenir à la sélection</button>
+      className="bg-blue-500 text-white p-2 rounded mt-4">
+        Revenir à la sélection</button>
     </div>
   );
 }
