@@ -1,6 +1,7 @@
 "use client"; // Ajoute cette ligne pour indiquer que ce composant est un Client Component
 
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 const plantesParMois = {
   janvier: ['Carotte', 'Navet', 'Chou'],
@@ -32,7 +33,11 @@ export default function Resultats() {
       <h1 className="text-4xl font-bold">Plantes à planter en {mois.charAt(0).toUpperCase() + mois.slice(1)}</h1>
       <ul className="mt-4">
         {plantes.map((plante) => (
-          <li key={plante} className="list-disc">{plante}</li>
+          <li key={plante} className="list-disc">
+            <Link href={`/resultats/${plante.toLowerCase()}`}>
+            {plante}
+            </Link>
+            </li>
         ))}
       </ul>
       <button onClick={() => window.location.href = '/'} 
